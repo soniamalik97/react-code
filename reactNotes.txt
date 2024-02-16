@@ -1,0 +1,136 @@
+NAMASTE REACT COURSE BY AKSHAY SAINI
+=========================================================================================================================
+EPISODE - 1
+
+1. Create a basic Hello World program using HTML, JS and React
+2. For using React, imported React JS script from CDN React resource
+   That script has JavaScript code which has variables, functions etc. 
+   1st script has all of React, 2nd script has React-DOM used to modify the React DOM
+   Why 2 scripts are needed? The 2nd script acts as a bridge between React and the browsers
+
+3. React is a JS library used to build components.
+
+4. In React to create an element we use React's createElement
+   Now we need to put this element in our root element. To create the root element we use ReactDOM 
+   React's createElement does the core stuff but the root is created by ReactDOM - 
+   React.createElement("h1", {}, "Hello World");
+   ReactDOM.createRoot(document.getElementById("root"));
+
+   In React.createElement the object {} is used to give attributes to the tag
+   If we print the React element created then it gives a normal JS object and not the HTML element!
+   rootReact.render() method is converting this React element object to an h1 tag and putting it in the DOM
+   ReactElement(Object) => HTML (Browser understands)
+   
+5. Most costly operation in a webpage = Manipulation of DOM Nodes (adding, removing nodes from the DOM)
+   React's philosophy says = whenever we need to do some manipulations in a webpage do it using JS in an optimised way
+                           = React gives us these helper functions to do such manipulations in a performant way
+
+6. React.createElement = take 3 arguments
+                       = 1. tag name, 2. object containing attributes, 3. children (multiple children are to be passed in an array)
+                       = the array is used to created nested sibling elements
+                       = React.createElement is the core of React, in reality we use JSX to write React
+
+7. What will happen if we change the order of calling our scripts?
+   = app.js first and then react.development.js/react-dom.development.js                       
+   = throws an error! React is not defined
+   = react.development.js script needs to be called first
+
+8. What if an h1 tag is already present in our index.html file?                                                 
+   = we use rootReact.render(parent);
+   = the h1 tag in index.html file will be replaced by the parent (replaced not appended!)
+   = how this happens? the order in our index.html is - load the html, call the react script, call the app.js script
+   = so initially our h1 tag (sonia is here) is loaded and when react is loaded it calls app.js which replaces that h1 
+     tag with the parent
+   = react renders everything inside the root div (we have defined our root as this div), anything outside this stays the
+     same
+
+9. React is a JS library which can be used for a small section of your app by applying some JS functions to optimise it
+   It is not a whole framework
+
+HomeWork of Episode 1 - 
+
+Q.1 What is Emmet?
+= it's a plugin or developer tool kit that helps make your work faster and substantially enhances 
+HTML and CSS workflows
+= it is a built-in feature in Visual Studio Code
+= helps you quickly create repetitive structures like lists, tables, or ordered elements with minimal typing
+= type html:5 in a .html file and the basic structure is ready
+= type ul>li*3>span.hello$ in a .html file and get the li tags
+= type dn in a .css file and get display:none; css
+
+Q.2 What is the difference between a library and a framework? 
+= JS libraries are a collections of prewritten code snippets that can be used (and reused) to perform common JS functions (React JS) in a performant way
+= JS frameworks a full toolset that help shape and organize your web application (Angular JS)
+
+Q.3 What is CDN (content delivery network)? Why do we use it?
+= it is a network of servers linked together with the goal of delivering content as quickly, cheaply, reliably 
+  and securely as possible
+= it caches content close to end users
+= it allows for the quick transfer of assets including HTML pages, JavaScript files, stylesheets, images, and videos
+= it is not the same as a web host, CDN does not host content and can’t replace the need for proper web hosting,
+  it does help cache content at the network edge
+= it improves load time, reduces bandwidth costs, increases content availability and improves website security
+= some major service providers -> Amazon, Cloudflare
+= the closer the CDN server is to the user geographically, the faster the content will be delivered to the user
+= origin server(s) - the content to be distributed over the internet is stored here 
+                   - it can be in the customer network or a part of the CDN
+  cache server(s) - in location 1, location 2, location 3, location 4 ...
+                  - located in various parts of the World
+                  - they contain cached content from the origin servers
+                  - they either cache all the content or the most frequently requested one
+= CDN headers - Cache-Control: public/private/no-cache/no-store/public and max-age=[seconds]
+                    max-age = time in seconds it take for the content to get expired
+                    no-cache = browser may cache a response, but must first submit a validation request 
+                               to an origin server
+                    no-store = browsers aren’t allowed to cache a response and must pull it from the 
+                               server each time it’s requested (sensitive banking details)
+                    public = resource can be cached by any cache
+                    private = resource is user specific—it can still be cached, but only on a client device
+              - Expires - sets the time of content expiration and removal
+                                  
+Q.4 Why is React known as React?
+= because it "reacts" quickly to changes without reloading the whole page
+= it uses the virtual DOM to efficiently update parts of a webpage 
+= it's built around components that "react" and update
+
+Q.5 What is the difference between React and ReactDOM?
+= React: React is a javascript library, designed for building better user interfaces.
+= React-DOM: React-DOM is a complimentary library to React which glues React to the browser DOM
+
+= React provides the tools and concepts to define component-based user interfaces
+= ReactDOM handles the task of rendering those interfaces in a web environment
+
+Q.6 What is difference between react.development.js and react.production.js files via CDN?
+= the development link is typically used during the development phase of your application
+= it includes additional debugging tools, warnings, and helpful error messages
+= it is larger in file size and may negatively impact the performance of your application
+= it is not optimised for production use
+
+= the production link is meant for deploying your application in a production environment
+= it excludes development-specific tools, warnings, and error messages
+= it is smaller in file size, which improves the performance of your application
+= it is optimized for production use
+
+Q.7 What is async and defer?
+= boolean attributes used along with script tags to load the externa;l scripts efficiently in our web app
+= whenever a script is encountered the HTML parsing is stopped till the time script is executed
+= while using async the script is fetched from the network parallely and when the script is being executed in that time 
+  the HTML parsing is stopped
+= while using defer the script is fetched from the network parallely and the script is executed after the HTML parsing
+  is done
+
+Q.8 What is crossorigin in script tag?  
+= it is an attribute that sets the mode of the request to an HTTP CORS Request
+= web pages often make requests to load resources on other servers, here is where CORS comes in
+= a cross-origin request is a request for a resource (style sheets, iframes, images, fonts, or scripts) 
+  from another domain outside their own domain
+= CORS (Cross-Origin Resource Sharing) is used to manage cross-origin requests
+= the opposite of cross-origin requests is same-origin requests 
+  this means that a web page can only interact with other documents that are also on the same server and have
+  the same origin(domain)
+
+
+=========================================================================================================================
+EPISODE - 2
+
+1. 
